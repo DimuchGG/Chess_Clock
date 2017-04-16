@@ -7,7 +7,7 @@
     tools:context="com.example.dimuch.chess_clock.MainActivity">
 
     <Button
-        android:id="@+id/time1"
+        android:id="@+id/bTime1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Time1" />
@@ -18,21 +18,21 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/pause"
+            android:id="@+id/bPause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Pause" />
 
         <Button
-            android:id="@+id/refresh"
+            android:id="@+id/bRefresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Refresh" />
 
         <Button
-            android:id="@+id/settings"
+            android:id="@+id/bSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,7 +40,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/time2"
+        android:id="@+id/bTime2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Time2" />

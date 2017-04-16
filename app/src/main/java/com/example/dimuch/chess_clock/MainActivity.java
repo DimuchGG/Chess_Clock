@@ -6,13 +6,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements com.example.dimuch.chess_clock.View {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    private Button bTime1;
-    private Button bTime2;
-    private Button bPause;
-    private Button bRefresh;
-    private Button bSettings;
+public class MainActivity extends AppCompatActivity implements MyView {
+
+    @BindView(R.id.bTime1) Button bTime1;
+    @BindView(R.id.bTime2) Button bTime2;
+    @BindView(R.id.bPause) Button bPause;
+    @BindView(R.id.bRefresh) Button bRefresh;
+    @BindView(R.id.bSettings) Button bSettings;
 
     private Presenter presenter;
 
@@ -20,11 +23,11 @@ public class MainActivity extends AppCompatActivity implements com.example.dimuc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         presenter = new Presenter();
         presenter.bind(this);
 
-        findElements();
         setOnClickListeners();
     }
 
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements com.example.dimuc
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Time 1", Toast.LENGTH_SHORT).show();
-                presenter.doSomeThing();
+                presenter.doSomeThingPlayer1();
             }
         });
 
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements com.example.dimuc
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Time 2", Toast.LENGTH_SHORT).show();
+                presenter.doSomeThingPlayer2();
             }
         });
 
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements com.example.dimuc
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Pause", Toast.LENGTH_SHORT).show();
+                presenter.pause();
             }
         });
 
@@ -66,16 +71,18 @@ public class MainActivity extends AppCompatActivity implements com.example.dimuc
         });
     }
 
-    private void findElements() {
-        bTime1 = (Button) findViewById(R.id.time1);
-        bTime2 = (Button) findViewById(R.id.time2);
-        bPause = (Button) findViewById(R.id.pause);
-        bRefresh = (Button) findViewById(R.id.refresh);
-        bSettings = (Button) findViewById(R.id.settings);
+    @Override
+    public void changeBtnTextPlayer1(String str) {
+        bTime1.setText(str);
     }
 
     @Override
-    public void changeBtnText(String str) {
-        bTime1.setText(str);
+    public void changeBtnTextPlayer2(String str) {
+        bTime2.setText(str);
+    }
+
+    @Override
+    public void changeBtnTextPause(String str) {
+        bPause.setText(str);
     }
 }
