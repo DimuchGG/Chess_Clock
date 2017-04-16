@@ -7,19 +7,26 @@ package com.example.dimuch.chess_clock;
 public class Presenter {
 
     private MyView myView;
+
+    private int timeOfTheGame;
     private int timePlayer1;
     private int timePlayer2;
+
     private CountDownTimerPausable countDownTimerPausablePlayer1;
     private CountDownTimerPausable countDownTimerPausablePlayer2;
+
     private boolean isCountPlayer1;
     private boolean isCountPlayer2;
     private boolean isCountPlayer1Active;
     private boolean isCountPlayer2Active;
+
     private boolean isPause;
 
-    public Presenter() {
-        timePlayer1 = 180;
-        timePlayer2 = 180;
+    public Presenter(int timeOfTheGame) {
+        this.timeOfTheGame = timeOfTheGame;
+
+        timePlayer1 = timeOfTheGame;
+        timePlayer2 = timeOfTheGame;
     }
 
     public void bind (MyView myView) {
@@ -103,5 +110,26 @@ public class Presenter {
             myView.changeBtnTextPause("Pause");
             return;
         }
+    }
+
+    public void refresh() {
+        if (!isPause) {
+            pause();
+        }
+        myView.changeBtnTextPause("Pause");
+
+        timePlayer1 = timeOfTheGame;
+        timePlayer2 = timeOfTheGame;
+
+        myView.changeBtnTextPlayer1(String.valueOf(timePlayer1));
+        myView.changeBtnTextPlayer2(String.valueOf(timePlayer2));
+
+        isCountPlayer1 = false;
+        isCountPlayer2 = false;
+        isCountPlayer1Active = false;
+        isCountPlayer2Active = false;
+
+        isPause = false;
+
     }
 }

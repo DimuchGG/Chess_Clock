@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements MyView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        presenter = new Presenter();
+        presenter = new Presenter(180);
         presenter.bind(this);
 
         setOnClickListeners();
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MyView {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Refresh", Toast.LENGTH_SHORT).show();
+                presenter.refresh();
             }
         });
 
